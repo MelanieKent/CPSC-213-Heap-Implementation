@@ -162,7 +162,6 @@ static void *split_and_mark_used(struct myheap *h, void *block_start, int needed
   /* TO BE COMPLETED BY THE STUDENT. */
 
   long * header = block_start;
-  // long * footer;
   int currBlockSize = get_block_size(block_start);
 
   if ((currBlockSize - needed_size) >= (HEADER_SIZE * 3)) {
@@ -170,13 +169,7 @@ static void *split_and_mark_used(struct myheap *h, void *block_start, int needed
     set_block_header(block_start + needed_size, currBlockSize - needed_size, 0);
   } else {
     set_block_header(block_start, currBlockSize, 1);
-    // *header = *header | 1;
-    // footer = header + (currBlockSize - HEADER_SIZE);
-    // *footer = *header;
   }
-
-  // mark header and footer of the new block as used
-
   return get_payload(header);
 }
 
